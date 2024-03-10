@@ -1,0 +1,37 @@
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.App {
+  text-align: center;
+  margin: 0rem;
+  padding: 0rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content-flex {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.nav-footer {
+    margin-top: auto;
+}
+
+.product-content {
+    margin: 0rem;
+    padding: 0rem;
+}
+
+.product-content p {
+    margin: 0rem;
+    padding: 0rem;
+}
+
+
+
