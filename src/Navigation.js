@@ -48,6 +48,13 @@ const useStyles = createUseStyles({
         '&:hover': {
             textDecoration: 'underline'
         }
+    },
+    mainBody: {
+        padding: '30px'
+    },
+
+    bodyHeader: {
+        margin: 0
     }
 })
 
@@ -75,16 +82,19 @@ function Navigation() {
                     </li>
                 </ul>
             </header>
-            <article className="main-body">
+            <article className={classes.mainBody}>
+                <h2 className={classes.bodyHeader}>Products</h2>
                 <Products/>
-                <Team/>
-                <CustomerAnalytics/>
             </article>
-            <footer className="nav-footer">
-                <h2>Goodbye!</h2>
-            </footer>
+
         </div>
     )
 }
 
 export default Navigation;
+
+/*
+            <footer className="nav-footer">
+                <h2>Goodbye!</h2>
+            </footer>
+*/
