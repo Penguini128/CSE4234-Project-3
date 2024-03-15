@@ -1,9 +1,9 @@
 function Product() {
     return (
-        <div className="product-content">
-            <p>This is a product</p>
-        </div>
-    )
+                    <div className="product-content">
+                        <p>${data}</p>
+                    </div>
+                )
 }
 
 export default Product;
