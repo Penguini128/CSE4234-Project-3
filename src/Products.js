@@ -2,7 +2,7 @@ import React from 'react';
 import {useEffect, useState} from 'react';
 import style from './Style';
 import { createUseStyles } from 'react-jss';
-import Product from './Product';
+import ProductTableRow from './ProductTableRow';
 
 const useStyles = createUseStyles(style)
 
@@ -13,8 +13,7 @@ function Products() {
     const [inventory, setInventory] = useState([]);
 
     useEffect(() => {
-
-        fetch("products.json")
+        fetch("./products.json")
             .then(response => response.json())
             .then(
                 (result) => {
@@ -34,19 +33,16 @@ function Products() {
     } else if (!isLoaded) {
         return <div>Loading...</div>;
     } else {
+        const headers = ["Title", "Price", "Category", "Rating", "Inventory", "Revenue", ""]
         return (            
-            <div className={classes.productContent}>
-                <div className={classes.productRow}>
-                    <h4 className={classes.productCellHeader}>Title</h4>
-                    <h4 className={classes.productCellHeader}>Price</h4>
-                    <h4 className={classes.productCellHeader}>Category</h4>
-                    <h4 className={classes.productCellHeader}>Rating</h4>
-                    <h4 className={classes.productCellHeader}>Inventory</h4>
-                    <h4 className={classes.productCellHeader}>Revenue</h4>
-                    <h4 className={classes.productCellHeader}> </h4>
-                </div>
+            <div className={classes.tableContent}>
+                <section className={classes.productRow}>
+                    {
+                        headers.map((header) => <h4 className={classes.tableCellHeader}>{header}</h4>)
+                    }
+                </section>
                 { inventory.map((product, index) => (
-                    <Product content={product} colored={index % 2 == 1 ? true : false}/>
+                    <ProductTableRow content={product} colored={index % 2 == 1 ? true : false}/>
                 ))}
             </div>
         )

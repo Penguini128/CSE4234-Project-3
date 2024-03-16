@@ -1,13 +1,12 @@
-import { createUseStyles } from 'react-jss';
-
 const colors = {
     skyBlue: '#13B6F6',
     coral: '#FF4782',
     smokeyWhite: '#F5F5F5',
     white: '#FFFFFF',
     mutePurple: "#523D4F",
-    lightGray: "#E0E0E0",
-    midGray: "#AAAAAA"
+    lightGray: "#E2E2E2",
+    midGray: "#B0B0B0",
+    babyPink: "#FEECF2"
 }
 
 const tableCellPadding = "10px"
@@ -69,11 +68,11 @@ const style = {
     mainBody: {
         padding: '0px 30px'
     },
-    productContent: {
+    tableContent: {
         display: "flex",
         flexDirection: 'column'
     },
-    productCellHeader: {
+    tableCellHeader: {
         margin: "0px 1px",
         padding: tableCellPadding,
         backgroundColor: colors.midGray
@@ -82,18 +81,43 @@ const style = {
         display: "grid",
         gridTemplateColumns: "4fr 2fr 3fr 2fr 2fr 2fr 2fr",
         borderRadius: "12px",
-        overflow: "hidden"
+        overflow: "hidden",
     },
-    productCellColored: {
+    customerRow: {
+        display: "grid",
+        gridTemplateColumns: "2fr 2fr 3fr 2fr 1fr",
+        borderRadius: "12px",
+        overflow: "hidden",
+    },
+    tableCellColored: {
         margin: "0px 1px",
         padding: tableCellPadding,
         backgroundColor: colors.lightGray
     },
-    productCellWhite: {
+    tableCellHovered: {
+        margin: "0px 1px",
+        padding: tableCellPadding,
+        backgroundColor: colors.babyPink
+    },
+    tableCellWhite: {
         margin: "0px 1px",
         padding: tableCellPadding,
         backgroundColor: colors.white
+    },
+    sortArrow: {
+        '&:hover': {
+            cursor: "pointer"
+        }
+    },
+    centerImage: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
+    },
+    headshotPhoto: {
+        display: 'inline-block',
+        borderRadius: "50%",
+        
     }
 }
-
 export default style;
