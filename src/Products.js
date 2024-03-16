@@ -1,8 +1,13 @@
 import React from 'react';
 import {useEffect, useState} from 'react';
-//export default Products;
+import style from './Style';
+import { createUseStyles } from 'react-jss';
+import Product from './Product';
+
+const useStyles = createUseStyles(style)
 
 function Products() {
+    const classes = useStyles();
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [inventory, setInventory] = useState([]);
@@ -29,21 +34,20 @@ function Products() {
     } else if (!isLoaded) {
         return <div>Loading...</div>;
     } else {
-        return (
-            <div className="product-content">
-                <ul>
-                    {inventory.map(product => (
-                    <li key={product.id}>
-                        <h2>{product.title}</h2>
-                        <p>Price: ${product.price}</p>
-                        <p>Category: {product.category}</p>
-                        <p>Rating: {product.rating.rate}</p>
-                        <p>Inventory: ${product.inventory}</p>
-                        <p>Revenue: ????? </p>
-                        <p>Button: goes here</p>
-                    </li>
-                   ))}
-                </ul>
+        return (            
+            <div className={classes.productContent}>
+                <div className={classes.productRow}>
+                    <h4 className={classes.productCellHeader}>Title</h4>
+                    <h4 className={classes.productCellHeader}>Price</h4>
+                    <h4 className={classes.productCellHeader}>Category</h4>
+                    <h4 className={classes.productCellHeader}>Rating</h4>
+                    <h4 className={classes.productCellHeader}>Inventory</h4>
+                    <h4 className={classes.productCellHeader}>Revenue</h4>
+                    <h4 className={classes.productCellHeader}> </h4>
+                </div>
+                { inventory.map((product, index) => (
+                    <Product content={product} colored={index % 2 == 1 ? true : false}/>
+                ))}
             </div>
         )
     }
