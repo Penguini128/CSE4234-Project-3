@@ -14,7 +14,6 @@ const CustomerAnalytics = () => {
     const classes = useStyles();
 
     const [isLoaded, setIsLoaded] = useState(0);
-    const [sort, setSort] = useState({ field: "", order: "" });
     const [sortedCustomers, setSortedCustomers] = useState([]);
     const [inventory, setInventory] = useState([]);
     const [error, setError] = useState(null);
@@ -68,9 +67,20 @@ const CustomerAnalytics = () => {
             }
         )
                 
-        console.log("hello!");
     }, [])
     
+    function updateSort(fieldName, order) {
+        let sign = order === "asc" ? 1 : -1;
+        let sortedData = [];
+        if (fieldName === "Name") 
+            sortedData = sortedCustomers.slice().sort((a, b) => (sign * a.fullName.localeCompare(b.fullName)));
+        else if (fieldName === "Address") 
+            sortedData = sortedCustomers.slice().sort((a, b) => (sign * a.fullAddress.localeCompare(b.fullAddress)));
+        else if (fieldName === "Email")
+            sortedData = sortedCustomers.slice().sort((a, b) => (sign * a.email.localeCompare(b.email)));
+        
+        setSortedCustomers(sortedData);
+    }
 
     if (error) {
         return <p> Error: {error.message}</p>;
@@ -83,9 +93,9 @@ const CustomerAnalytics = () => {
             {
                 headers.map((header, index) => (
                     <h4 className={classes.tableCellHeader}>{header}
-                    { sortable[index] ? <span className={classes.sortArrow} onClick={() => setSort({ field:{header}, order: "asc" })}> &#8595; </span> 
+                    { sortable[index] ? <span className={classes.sortArrow} onClick={() => updateSort(header, "desc")}> &#8595; </span> 
                                       : "" }
-                    { sortable[index] ? <span className={classes.sortArrow} onClick={() => setSort({ field:{header}, order: "desc" })}> &#8593; </span> 
+                    { sortable[index] ? <span className={classes.sortArrow} onClick={() => updateSort(header, "asc")}> &#8593; </span> 
                                       : "" }
                     </h4>
                 ))
@@ -100,107 +110,6 @@ const CustomerAnalytics = () => {
                     )
                 })
             }
-
-            { /*headers.find((item) => item === sort.field) &&
-                reducedUserData.map((user, index) => {
-                    return (
-                        <div
-                            className={`${classes.flex} ${classes.hover_alice} ${classes.max_w_80}`}
-                            key={user.email}
-                        >
-                            <section
-                                className={`${classes.name}    ${
-                                    index % 2 ? classes.bg_slate : ""
-                                }    ${classes.mx_1} ${classes.p_10}`}
-                            >
-                                {user.fullName}
-                            </section>
-                            <section
-                                className={`${classes.Address}    ${
-                                    index % 2 ? classes.bg_slate : ""
-                                } ${classes.p_10} ${classes.mx_1}`}
-                            >
-                                {user.fullAddress}
-                            </section>
-                            <section
-                                className={`${classes.Email} ${
-                                    index % 2 ? classes.bg_slate : ""
-                                }    ${classes.p_10} ${classes.mx_1}`}
-                            >
-                                {`${user.email}`}
-                            </section>
-                            <section
-                                className={`${classes.Revenue} ${
-                                    index % 2 ? classes.bg_slate : ""
-                                } ${classes.p_10} ${classes.mx_1}`}
-                            >
-                                {user.revenue}
-                            </section>
-                            <section
-                                className={`${classes.avatar}    ${
-                                    index % 2 ? classes.bg_slate : ""
-                                }    ${classes.p_10} ${classes.mx_1}`}
-                            >
-                                <img
-                                    src={user.thumbnail}
-                                    alt={user.fullName}
-                                    className={`${classes.border_rounded} `}
-                                />
-                            </section>
-                        </div>
-                    );
-                })*/}
-
-            {/*sort.field !== "Title" &&
-                sortUserData.map((user, index) => {
-                    console.log(sortUserData);
-                    return (
-                        <div
-                            className={`${classes.flex} ${classes.hover_alice} ${classes.max_w_80}`}
-                            key={user.email}
-                        >
-                            <section
-                                className={`${classes.name}    ${
-                                    index % 2 ? classes.bg_slate : ""
-                                }    ${classes.mx_1} ${classes.p_10}`}
-                            >
-                                {user.fullName}
-                            </section>
-                            <section
-                                className={`${classes.Address}    ${
-                                    index % 2 ? classes.bg_slate : ""
-                                } ${classes.p_10} ${classes.mx_1}`}
-                            >
-                                {user.fullAddress}
-                            </section>
-                            <section
-                                className={`${classes.Email} ${
-                                    index % 2 ? classes.bg_slate : ""
-                                }    ${classes.p_10} ${classes.mx_1}`}
-                            >
-                                {user.email}
-                            </section>
-                            <section
-                                className={`${classes.Revenue} ${
-                                    index % 2 ? classes.bg_slate : ""
-                                } ${classes.p_10} ${classes.mx_1}`}
-                            >
-                                {user.Revenue}
-                            </section>
-                            <section
-                                className={`${classes.avatar}    ${
-                                    index % 2 ? classes.bg_slate : ""
-                                }    ${classes.p_10} ${classes.mx_1}`}
-                            >
-                                <img
-                                    src={user.thumbnail}
-                                    alt={user.fullName}
-                                    className={`${classes.border_rounded} `}
-                                />
-                            </section>
-                        </div>
-                    );
-                })*/}
         </div>
     );
 };

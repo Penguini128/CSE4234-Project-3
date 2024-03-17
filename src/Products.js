@@ -13,7 +13,6 @@ function Products() {
     const [inventory, setInventory] = useState([]);
 
     useEffect(() => {
-        console.log("hello!")
         fetch("./products.json")
             .then(response => response.json())
             .then(
