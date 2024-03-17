@@ -13,27 +13,36 @@ const CustomerAnalytics = () => {
 
     const classes = useStyles();
 
+    const [isLoaded, setIsLoaded] = useState(0);
     const [sort, setSort] = useState({ field: "", order: "" });
-    const [sortedCustomers, setSortedCustomers] = useState(null);
+    const [sortedCustomers, setSortedCustomers] = useState([]);
+    const [inventory, setInventory] = useState([]);
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        fetch("./products.json")
+        .then(response => response.json())
+        .then(
+            (result) => {
+                setIsLoaded(isLoaded + 1);
+                setInventory(result);
+            },
 
-        async function fetchData() {
-            try {
-                const customersResponse = await fetch("./customers.json");
-                const productsResponse = await fetch("./products.json");
-                
-                if (!customersResponse.ok) throw new Error("Failed to fetch customer data");
-                if (!productsResponse.ok) throw new Error("Failed to fetch product data");
-                
-                const customersJson = await customersResponse.json();
-                const productsJson = await productsResponse.json();
-                
-                let sortedData = customersJson.map((user) => {
+            (error) => {
+                setError(error);
+            }
+        )
+
+        fetch("./customers.json")
+        .then(response => response.json())
+        .then(
+            (result) => {
+                setIsLoaded(isLoaded + 1);
+
+                let sortedData = result.map((user) => {
                     let total = 0;
                     user.purchases.forEach((purchased) => {
-                        const product = productsJson?.find(
+                        const product = inventory?.find(
                             (product) => product.id === purchased.productID
                         );
                         if (product) {
@@ -51,20 +60,21 @@ const CustomerAnalytics = () => {
                         thumbnail: user.picture.thumbnail
                     }
                 }, [])
-                setSortedCustomers(sortedData);
-            } catch (error) {
+                setSortedCustomers(sortedData)
+            },
+
+            (error) => {
                 setError(error);
             }
-        }
+        )
+                
+        console.log("hello!");
+    }, [])
+    
 
-        fetchData();
-
-        if (sort == "") return;
-    })
-
-    if (error != null) {
+    if (error) {
         return <p> Error: {error.message}</p>;
-    } else if (sortedCustomers == null) {
+    } else if (!isLoaded) {
         return <p>Loading...</p>;
     }
     else return (
@@ -73,9 +83,9 @@ const CustomerAnalytics = () => {
             {
                 headers.map((header, index) => (
                     <h4 className={classes.tableCellHeader}>{header}
-                    { sortable[index] ? <span className={classes.sortArrow} onClick={() => setSort({ field: "Name", order: "asc" })}> &#8595; </span> 
+                    { sortable[index] ? <span className={classes.sortArrow} onClick={() => setSort({ field:{header}, order: "asc" })}> &#8595; </span> 
                                       : "" }
-                    { sortable[index] ? <span className={classes.sortArrow} onClick={() => setSort({ field: "Name", order: "desc" })}> &#8593; </span> 
+                    { sortable[index] ? <span className={classes.sortArrow} onClick={() => setSort({ field:{header}, order: "desc" })}> &#8593; </span> 
                                       : "" }
                     </h4>
                 ))
