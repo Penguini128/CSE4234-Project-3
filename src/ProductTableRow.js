@@ -23,14 +23,12 @@ function ProductTableRow({ content, colored }) {
       onMouseOut={setHoveredFalse}
     >
       <p className={cellBackground}>{content.title}</p>
-      <p className={cellBackground}>Price: ${content.price}</p>
+      <p className={cellBackground}>Price: ${content.price.toFixed(2)}</p>
       <p className={cellBackground}>Category: {content.category}</p>
       <p className={cellBackground}>Rating: {content.rating.rate}</p>
-      <p className={cellBackground}>Inventory: ${content.inventory}</p>
+      <p className={cellBackground}>Inventory: {content.inventory}</p>
       <p className={cellBackground}>Revenue: ????? </p>
-      <p className={cellBackground}>
-        <button>Learn More</button>
-      </p>
+      <p className={cellBackground}>Button: goes here</p>
     </section>
   );
 }
