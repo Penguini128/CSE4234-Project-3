@@ -1,6 +1,7 @@
 import style from "./Style";
 import { useEffect, useState } from "react";
 import { createUseStyles } from "react-jss";
+import Product from "./Product";
 
 const useStyles = createUseStyles(style);
 
@@ -14,6 +15,7 @@ function ProductTableRow({ content, colored }) {
 
   const setHoveredTrue = () => setHovered(true);
   const setHoveredFalse = () => setHovered(false);
+  const togglePopup = () => () => Product.setPopupVisiblity(true);
 
   return (
     <section
@@ -28,7 +30,10 @@ function ProductTableRow({ content, colored }) {
       <p className={cellBackground}>Rating: {content.rating.rate}</p>
       <p className={cellBackground}>Inventory: {content.inventory}</p>
       <p className={cellBackground}>Revenue: ????? </p>
-      <p className={cellBackground}>Button: goes here</p>
+      <p className={cellBackground}>
+        <button onClick={openPopup}>Learn More</button>
+        <Product popupVisible={popupVisible} closePopup={togglePopup} />
+      </p>
     </section>
   );
 }

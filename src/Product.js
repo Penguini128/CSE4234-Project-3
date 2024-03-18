@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Products from "./Products";
+import ProductTableRow from "./ProductTableRow";
 
 function Product() {
   const [popupVisible, setPopupVisiblity] = useState(false);
@@ -17,17 +18,16 @@ function Product() {
     zIndex: 200,
   };
 
-  const togglePopup = () => {
-    setPopupVisiblity(!popupVisible);
+  const closePopup = () => {
+    setPopupVisiblity(false);
   };
 
   return (
     <div style={windowStyle}>
-      <Products />
       {popupVisible && (
-        <div id="popup">
+        <div>
           <div>
-            <span id="popupClose" onClick={togglePopup}>
+            <span id="popupClose" onClick={closePopup}>
               X
             </span>
           </div>
