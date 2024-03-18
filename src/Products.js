@@ -52,7 +52,7 @@ function Products() {
         {inventory.map((product, index) => (
           <ProductTableRow
             content={product}
-            colored={index % 2 === 1 ? true : false}
+            colored={index % 2 == 1 ? true : false}
           />
         ))}
       </div>

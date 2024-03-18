@@ -10,6 +10,7 @@ const colors = {
 }
 
 const tableCellPadding = "10px"
+const teamCardBorderRadius = '30px'
 
 const style = {
     app: {
@@ -118,6 +119,60 @@ const style = {
         display: 'inline-block',
         borderRadius: "50%",
         
+    },
+    teamImage: {
+        width: '300px',
+        height: '300px'
+    },
+    flipCard: {
+        backgroundColor: 'transparent',
+        borderRadius: teamCardBorderRadius,
+        width: '400px',
+        height: '400px' ,
+        perspective: '1000px',
+        transition: 'transform 0.8s',
+    },
+    flipCardInner: {
+        width: '100%',
+        height: '100%',
+        textAlign: 'center',
+        transition: 'transform 0.8s',
+
+        transformStyle: 'preserve-3d',
+        '&:hover': {
+            transform: 'rotateY(180deg)'
+        }
+    },
+
+    flipCardFront:  {
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        borderRadius: teamCardBorderRadius,
+
+        backgroundColor: colors.white,
+        boxShadow: 'rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px',
+        color: 'black',
+
+        webkitBackfaceVisibility: 'hidden',
+        backfaceVisibility: 'hidden',
+
+    },
+
+    flipCardBack: {
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        webkitBackfaceVisibility: 'hidden',
+        backfaceVisibility: 'hidden',
+        borderRadius: teamCardBorderRadius,
+
+
+        backgroundColor: colors.white,
+        boxShadow: 'rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px',
+        color: 'black',
+        transform: 'rotateY(180deg)'
+
     }
 }
 export default style;
