@@ -4,7 +4,7 @@ import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles(style)
 
-function CustomerTableRow({content, colored}) {
+function ProductTableRow({content, colored}) {
 
    const [hovered, setHovered] = useState(false);
     const classes = useStyles();
@@ -18,14 +18,14 @@ function CustomerTableRow({content, colored}) {
         <section className={classes.productRow} key={content.id}
             onMouseOver={setHoveredTrue} onMouseOut={setHoveredFalse}>
             <p className={cellBackground}>{content.title}</p>
-            <p className={cellBackground}>Price: ${content.price}</p>
+            <p className={cellBackground}>Price: ${content.price.toFixed(2)}</p>
             <p className={cellBackground}>Category: {content.category}</p>
             <p className={cellBackground}>Rating: {content.rating.rate}</p>
-            <p className={cellBackground}>Inventory: ${content.inventory}</p>
+            <p className={cellBackground}>Inventory: {content.inventory}</p>
             <p className={cellBackground}>Revenue: ????? </p>
             <p className={cellBackground}>Button: goes here</p>
         </section>
     )
 }
 
-export default CustomerTableRow;
+export default ProductTableRow;
