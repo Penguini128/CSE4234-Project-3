@@ -1,6 +1,5 @@
 const colors = {
-    skyBlue: '#13B6F6',
-    coral: '#FF4782',
+    title: '#274690',
     smokeyWhite: '#F5F5F5',
     white: '#FFFFFF',
     mutePurple: "#523D4F",
@@ -15,10 +14,11 @@ const cardFlipTime = '0.5s'
 
 const style = {
     funTitle: {
+        color: colors.title,
         display: 'inline-block',
-        transition: 'transform 0.3s',
+        transition: 'transform 0.05s',
         '&:hover': {
-            transform: 'rotateY(0)'
+            transform: 'translateY(-3px)'
         }
     },
     app: {
@@ -43,9 +43,9 @@ const style = {
         display: 'inline-block',
         witdth: 'auto',
         margin: '0px',
-        background: `linear-gradient(to right, ${colors.skyBlue}, ${colors.coral})`,
-        backgroundClip: 'text',
-        color: 'transparent',
+        //background: `linear-gradient(to right, ${colors.skyBlue}, ${colors.coral})`,
+        //backgroundClip: 'text',
+        //color: 'transparent',
         verticalAlign: 'center'
     },
     navHeaderMenu: {

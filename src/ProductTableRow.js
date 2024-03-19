@@ -38,7 +38,7 @@ function ProductTableRow({ content, colored, revenue }) {
       <p className={cellBackground}>{content.category}</p>
       <div className={cellBackground}><p className={classes.alignRight}>{content.rating.rate}</p></div>
       <div className={cellBackground}><p className={classes.alignRight}>{content.inventory}</p></div>
-      <div className={cellBackground}><p className={classes.alignRight}>{ revenue * content.price.toFixed(2) / 2}</p></div>
+      <div className={cellBackground}><p className={classes.alignRight}>${(revenue * content.price / 2).toFixed(2)}</p></div>
       <div className={cellBackground}>
         <button className={classes.learnMoreButton} onClick={setPopupTrue}>Learn More</button>
         {popupVisible ? productPopup : ""}
