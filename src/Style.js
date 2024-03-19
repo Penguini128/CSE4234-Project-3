@@ -70,7 +70,9 @@ const style = {
     "&:active": {
       transition: "transform 0s",
       transform: "translateY(0)",
-    },
+    }
+  },
+
   navHeaderAnchor: {
     display: "inline-block",
     borderColor: "#fff",
@@ -273,6 +275,7 @@ const style = {
   },
   popupContent: {
     padding: "1em 1em",
-  },
-};
+  }
+}
+
 export default style;
