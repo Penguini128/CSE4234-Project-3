@@ -5,7 +5,7 @@ import Product from "./Product";
 
 const useStyles = createUseStyles(style);
 
-function ProductTableRow({ content, colored }) {
+function ProductTableRow({ content, colored, revenue }) {
   const [hovered, setHovered] = useState(false);
   const classes = useStyles();
   let cellBackground = colored
@@ -29,10 +29,9 @@ function ProductTableRow({ content, colored }) {
       <p className={cellBackground}>Category: {content.category}</p>
       <p className={cellBackground}>Rating: {content.rating.rate}</p>
       <p className={cellBackground}>Inventory: {content.inventory}</p>
-      <p className={cellBackground}>Revenue: ????? </p>
+      <p className={cellBackground}>Revenue: { revenue * content.price.toFixed(2) / 2} </p>
       <p className={cellBackground}>
-        <button onClick={openPopup}>Learn More</button>
-        <Product popupVisible={popupVisible} closePopup={togglePopup} />
+
       </p>
     </section>
   );

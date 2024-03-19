@@ -6,7 +6,7 @@ import ProductTableRow from "./ProductTableRow";
 
 const useStyles = createUseStyles(style);
 
-const Products = ({ inventory }) => {
+const Products = ({ inventory, itemMap }) => {
   const classes = useStyles();
 
   const headers = [
@@ -28,13 +28,17 @@ const Products = ({ inventory }) => {
           </h4>
         ))}
       </section>
-      {inventory.map((product, index) => (
-        <ProductTableRow
-          key={product.title}
-          content={product}
-          colored={index % 2 == 1 ? true : false}
-        />
-      ))}
+      {inventory.map((product, index) => {
+          const productRev = itemMap[index+1];
+          return (
+            <ProductTableRow
+              key={product.title}
+              content={product}
+              colored={index % 2 === 1}
+              revenue={productRev ? productRev.timesPurchased : 0}
+            />
+          );
+        })}
     </div>
   );
 };
