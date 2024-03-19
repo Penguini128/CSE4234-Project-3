@@ -1,7 +1,6 @@
 import React from "react";
 import style from "./Style";
 import { createUseStyles } from "react-jss";
-import { useState, useEffect } from "react";
 import ProductTableRow from "./ProductTableRow";
 
 const useStyles = createUseStyles(style);

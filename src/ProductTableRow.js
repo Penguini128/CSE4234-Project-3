@@ -6,8 +6,12 @@ import Product from "./Product";
 const useStyles = createUseStyles(style);
 
 function ProductTableRow({ content, colored }) {
+
   const [hovered, setHovered] = useState(false);
+  const [popupVisible, setPopupVisiblity] = useState(false);
+
   const classes = useStyles();
+
   let cellBackground = colored
     ? classes.tableCellColored
     : classes.tableCellWhite;
@@ -15,7 +19,10 @@ function ProductTableRow({ content, colored }) {
 
   const setHoveredTrue = () => setHovered(true);
   const setHoveredFalse = () => setHovered(false);
-  const togglePopup = () => () => Product.setPopupVisiblity(true);
+
+  const setPopupTrue = () => setPopupVisiblity(true);
+
+  const productPopup = <Product setPopup={setPopupVisiblity} />;
 
   return (
     <section
@@ -30,10 +37,10 @@ function ProductTableRow({ content, colored }) {
       <p className={cellBackground}>Rating: {content.rating.rate}</p>
       <p className={cellBackground}>Inventory: {content.inventory}</p>
       <p className={cellBackground}>Revenue: ????? </p>
-      <p className={cellBackground}>
-        <button onClick={openPopup}>Learn More</button>
-        <Product popupVisible={popupVisible} closePopup={togglePopup} />
-      </p>
+      <div className={cellBackground}>
+        <button className={classes.learnMoreButton} onClick={setPopupTrue}>Learn More</button>
+        {popupVisible ? productPopup : ""}
+      </div>
     </section>
   );
 }
