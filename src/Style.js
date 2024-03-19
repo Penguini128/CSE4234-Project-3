@@ -9,8 +9,9 @@ const colors = {
     babyPink: "#FEECF2"
 }
 
-const tableCellPadding = "10px"
-const teamCardBorderRadius = '30px'
+const tableCellPadding = "10px 15px"
+const cardBorderRadius = '30px'
+const cardFlipTime = '0.5s'
 
 const style = {
     app: {
@@ -19,7 +20,7 @@ const style = {
         padding: '0rem',
         display: 'flex',
         flexDirection: 'column',
-        minHeight: '100vh'
+        minHeight: '100vh',
     },
     navHeader: {
         margin: 0,
@@ -53,6 +54,14 @@ const style = {
         boxShadow: 'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
         borderRadius: '10px',
         margin: '0.5em',
+        transition: 'transform 0.15s',
+        '&:hover': {
+            transform: 'translateY(-3px)'
+        },
+        '&:active': {
+            transition: 'transform 0s',
+            transform: 'translateY(0)'
+        }
       
     },
     navHeaderAnchor: {
@@ -67,7 +76,8 @@ const style = {
         }
     },
     mainBody: {
-        padding: '0px 30px'
+        padding: '0px 30px',
+        alignItems: 'center'
     },
     tableContent: {
         display: "flex",
@@ -90,7 +100,13 @@ const style = {
         borderRadius: "12px",
         overflow: "hidden",
     },
+    alignRight: {
+        float: 'right',
+        margin: 0
+    },
     tableCellColored: {
+        width: 'auto',
+        height: 'auto',
         margin: "0px 1px",
         padding: tableCellPadding,
         backgroundColor: colors.lightGray
@@ -120,23 +136,31 @@ const style = {
         borderRadius: "50%",
         
     },
+    teamContainer: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-evenly'
+    },
     teamImage: {
         width: '300px',
-        height: '300px'
+        height: '300px',
+        borderRadius : '50%'
     },
     flipCard: {
+        display: 'inline-block',
+        margin: '30px',
         backgroundColor: 'transparent',
-        borderRadius: teamCardBorderRadius,
+        borderRadius: cardBorderRadius,
         width: '400px',
-        height: '400px' ,
+        height: '400px',
         perspective: '1000px',
-        transition: 'transform 0.8s',
+        transition: `transform ${cardFlipTime}`,
     },
     flipCardInner: {
-        width: '100%',
-        height: '100%',
+        width: '400px',
+        height: '400px',
         textAlign: 'center',
-        transition: 'transform 0.8s',
+        transition: `transform ${cardFlipTime}`,
 
         transformStyle: 'preserve-3d',
         '&:hover': {
@@ -148,7 +172,7 @@ const style = {
         position: 'absolute',
         width: '100%',
         height: '100%',
-        borderRadius: teamCardBorderRadius,
+        borderRadius: cardBorderRadius,
 
         backgroundColor: colors.white,
         boxShadow: 'rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px',
@@ -165,7 +189,9 @@ const style = {
         height: '100%',
         webkitBackfaceVisibility: 'hidden',
         backfaceVisibility: 'hidden',
-        borderRadius: teamCardBorderRadius,
+        borderRadius: cardBorderRadius,
+        boxSizing: 'border-box',
+        padding: '0px 40px',
 
 
         backgroundColor: colors.white,
@@ -173,6 +199,68 @@ const style = {
         color: 'black',
         transform: 'rotateY(180deg)'
 
+    },
+    fadeBackground: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        zIndex: '199',
+        backgroundColor: '#000000A0',
+        boxShadow: 'rgba(0, 0, 0, .8) 0px 0px 200px 50px inset'
+    },
+    popupWindow: {
+        borderRadius: cardBorderRadius,
+        border: 'solid',
+        borderWidth: '2px',
+        borderColor: colors.midGray,
+        position: 'fixed',
+        top: '50%',
+        left:'50%',
+        transform: 'translate(-50%, -50%)',
+        backgroundColor: colors.lightGray,
+        boxShadow: 'rgba(0, 0, 0, 0.75) 0px 0px 16px',
+        width: "500px",
+        height: "500px",
+        zIndex: '200',
+        padding: '30px'
+    },
+    learnMoreButton: {
+        border: 'solid',
+        borderWidth: 1,
+        borderRadius: 5,
+        padding: '4px 10px',
+        borderColor: colors.midGray,
+        boxShadow: 'rgba(0, 0, 0, 0.3) 0px 2px 0px',
+        '&:hover': {
+            cursor: 'pointer',
+            backgroundColor: colors.lightGray
+        },
+        '&:active': {
+            boxShadow: 'rgba(0, 0, 0, 0.3) 0px 2px 0px inset',
+            transform: 'translateY(3px)'
+        }
+    },
+    closePopup: {
+        float: 'right',
+        padding: 'auto',
+        height: '30px',
+        width: '30px',
+        fontSize: 16,
+        border: 'solid',
+        borderWidth: 1,
+        borderRadius: 5,
+        borderColor: colors.midGray,
+        boxShadow: 'rgba(0, 0, 0, 0.3) 0px 3px 0px',
+        '&:hover': {
+            cursor: 'pointer',
+            backgroundColor: colors.lightGray
+        },
+        '&:active': {
+            boxShadow: 'rgba(0, 0, 0, 0.3) 0px 3px 0px inset',
+            transform: 'translateY(3px)'
+        }
     }
 }
 export default style;

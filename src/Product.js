@@ -1,41 +1,25 @@
 import React, { useState } from "react";
-import Products from "./Products";
-import ProductTableRow from "./ProductTableRow";
+import style from "./Style";
+import { createUseStyles } from 'react-jss';
 
-function Product() {
-  const [popupVisible, setPopupVisiblity] = useState(false);
+const useStyles = createUseStyles(style);
 
-  const windowStyle = {
-    display: "none",
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    background: "#a79b9b",
-    width: "500px",
-    height: "500px",
-    marginLeft: "-250px",
-    marginTop: "-250px",
-    zIndex: 200,
-  };
+function Product({setPopup}) {
 
-  const closePopup = () => {
-    setPopupVisiblity(false);
-  };
+  const classes = useStyles();
+
+  console.log("hi!");
+
+  const hide = () => { setPopup(false) }
 
   return (
-    <div style={windowStyle}>
-      {popupVisible && (
-        <div>
-          <div>
-            <span id="popupClose" onClick={closePopup}>
-              X
-            </span>
-          </div>
-          <div className="popupContent">
-            <h1>Some Popup Content</h1>
-          </div>
+    <div className={classes.fadeBackground}>
+        <div className={classes.popupWindow}>
+            <button className={classes.closePopup} onClick={hide}>X</button>
+            <div className={classes.popupContent}>
+                <h1>Some Popup Content</h1>
+            </div>
         </div>
-      )}
     </div>
   );
 }
