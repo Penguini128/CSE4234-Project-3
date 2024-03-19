@@ -5,7 +5,6 @@ import Product from "./Product";
 
 const useStyles = createUseStyles(style);
 
-
 function ProductTableRow({ content, colored, revenue }) {
 
   const [hovered, setHovered] = useState(false);
@@ -23,7 +22,9 @@ function ProductTableRow({ content, colored, revenue }) {
 
   const setPopupTrue = () => setPopupVisiblity(true);
 
-  const productPopup = <Product setPopup={setPopupVisiblity} />;
+  const productPopup = (
+    <Product setPopup={setPopupVisiblity} content={content} />
+  );
 
   return (
     <section
@@ -40,7 +41,9 @@ function ProductTableRow({ content, colored, revenue }) {
       <div className={cellBackground}><p className={classes.alignRight}>{content.inventory}</p></div>
       <div className={cellBackground}><p className={classes.alignRight}>${(revenue * content.price / 2).toFixed(2)}</p></div>
       <div className={cellBackground}>
-        <button className={classes.learnMoreButton} onClick={setPopupTrue}>Learn More</button>
+        <button className={classes.learnMoreButton} onClick={setPopupTrue}>
+          Learn More
+        </button>
         {popupVisible ? productPopup : ""}
       </div>
     </section>
