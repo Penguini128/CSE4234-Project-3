@@ -14,6 +14,13 @@ const cardBorderRadius = '30px'
 const cardFlipTime = '0.5s'
 
 const style = {
+    funTitle: {
+        display: 'inline-block',
+        transition: 'transform 0.3s',
+        '&:hover': {
+            transform: 'rotateY(0)'
+        }
+    },
     app: {
         margin: '0rem',
         fontFamily: '"Segoe UI", Roboto, Helvetica, Arial, serif',

@@ -19,17 +19,9 @@ const App = () => {
 
   const pages = [
     { id: 0, title: "Products", content: <Products inventory={inventory} /> },
-    {
-      id: 1,
+    { id: 1,
       title: "Customer Analytics",
-      content: (
-        <CustomerAnalytics
-          inventory={inventory}
-          sortedCustomers={sortedCustomers}
-          updateSort={setSortedCustomers}
-        />
-      ),
-    },
+      content: <CustomerAnalytics inventory={inventory} sortedCustomers={sortedCustomers} updateSort={setSortedCustomers}/> },
     { id: 2, title: "The Team", content: <Team key="team" /> },
   ];
 
