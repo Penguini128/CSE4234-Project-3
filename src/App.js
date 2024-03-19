@@ -16,10 +16,11 @@ const App = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(null);
+  const [itemRevenueMap, setItemRevenueMap] = useState([]);
   let itemMap = {};
 
   const pages = [
-    { id: 0, title: "Products", content: <Products inventory={inventory} /> },
+    { id: 0, title: "Products", content: <Products inventory={inventory} itemMap={itemRevenueMap}/> },
     { id: 1,
       title: "Customer Analytics",
       content: <CustomerAnalytics inventory={inventory} sortedCustomers={sortedCustomers} updateSort={setSortedCustomers}/> },
@@ -69,6 +70,7 @@ const App = () => {
                 });
                 setSortedCustomers(sortedData);
                 setInventory(tempInventory);
+                setItemRevenueMap(itemMap)
 
                 setCurrentPage({
                   id: 0,
@@ -87,6 +89,10 @@ const App = () => {
         }
       );
   }, []);
+
+  if (error) {
+    return (<h1>There was an error. Please refresh the page and try again.</h1>)
+  }
 
   return (
     <div className={classes.app}>

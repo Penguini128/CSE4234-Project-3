@@ -20,7 +20,7 @@ function CustomerTableRow({user, colored}) {
             <p className={cellBackground}>{user.fullName}</p>
             <p className={cellBackground}>{user.fullAddress}</p>
             <p className={cellBackground}>{user.email}</p>
-            <p className={cellBackground}>{user.revenue}</p>
+            <p className={cellBackground}>${user.revenue}</p>
             <div className={cellBackground}>
                 <div className={classes.centerImage}>
                     <img src={user.thumbnail} alt={user.fullName} className={classes.headshotPhoto} />

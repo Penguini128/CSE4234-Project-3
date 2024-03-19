@@ -39,20 +39,29 @@ const style = {
     padding: "20px 30px",
     boxShadow:
       "rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 0px 30px",
+    '@media screen and (max-width: 1000px)': {
+        display: 'block'
+    }
   },
   navTitle: {
     display: "inline-block",
     witdth: "auto",
     margin: "0px",
-    background: `linear-gradient(to right, ${colors.skyBlue}, ${colors.coral})`,
-    backgroundClip: "text",
-    color: "transparent",
     verticalAlign: "center",
+    '@media screen and (max-width: 1000px)': {
+        display: 'block',
+        textAlign: 'center'
+    }
   },
   navHeaderMenu: {
     display: "inline-block",
     marginLeft: "auto",
     margin: 0,
+    paddingLeft: 0,
+    '@media screen and (max-width: 1000px)': {
+        display: 'block',
+        textAlign: 'center'
+    }
   },
   navHeaderItem: {
     display: "inline-block",
@@ -70,6 +79,10 @@ const style = {
     "&:active": {
       transition: "transform 0s",
       transform: "translateY(0)",
+    },
+    '@media screen and (max-width: 1000px)': {
+        display: 'block',
+        margin: '20px 0px'
     }
   },
 
@@ -87,6 +100,11 @@ const style = {
   mainBody: {
     padding: "0px 30px",
     alignItems: "center",
+  },
+  bodyHeader: {
+    '@media screen and (max-width: 1000px)': {
+        textAlign: 'center'
+    }
   },
   tableContent: {
     display: "flex",
@@ -163,6 +181,9 @@ const style = {
     height: "400px",
     perspective: "1000px",
     transition: `transform ${cardFlipTime}`,
+    '@media screen and (max-width: 1000px)': {
+        display: 'block'
+    }
   },
   flipCardInner: {
     width: "400px",
@@ -270,8 +291,8 @@ const style = {
     },
   },
   productImage: {
-    width: "250px",
     height: "250px",
+    maxWidth: '400px'
   },
   popupContent: {
     padding: "1em 1em",
