@@ -1,5 +1,6 @@
 import { createUseStyles } from "react-jss";
 import CustomerTableRow from "./CustomerTableRow";
+import { useState } from "react";
 
 import style from "./Style";
 
@@ -11,23 +12,25 @@ const CustomerAnalytics = ({ sortedCustomers, updateSort }) => {
 
   const classes = useStyles();
 
-  function updateSort(fieldName, order) {
+    const [sorted, setSorted] = useState(sortedCustomers);
+
+  function sort(fieldName, order) {
     let sign = order === "asc" ? 1 : -1;
     let sortedData = [];
     if (fieldName === "Name")
-      sortedData = sortedCustomers
+      sortedData = sorted
         .slice()
         .sort((a, b) => sign * a.fullName.localeCompare(b.fullName));
     else if (fieldName === "Address")
-      sortedData = sortedCustomers
+      sortedData = sorted
         .slice()
         .sort((a, b) => sign * a.fullAddress.localeCompare(b.fullAddress));
     else if (fieldName === "Email")
-      sortedData = sortedCustomers
+      sortedData = sorted
         .slice()
         .sort((a, b) => sign * a.email.localeCompare(b.email));
 
-    updateSort(sortedData);
+    setSorted(sortedData);
   }
 
   return (
@@ -36,33 +39,23 @@ const CustomerAnalytics = ({ sortedCustomers, updateSort }) => {
         {headers.map((header, index) => (
           <h4 key={header} className={classes.tableCellHeader}>
             {header}
+            {" "}
             {sortable[index] ? (
-              <span
-                className={classes.sortArrow}
-                onClick={() => updateSort(header, "desc")}
-              >
-                {" "}
-                &#8595;{" "}
+              <span className={classes.sortArrow} onClick={() => sort(header, "desc")} >
+                &#8595;
               </span>
-            ) : (
-              ""
-            )}
+            ) : ( "" )}
+            {" "}
             {sortable[index] ? (
-              <span
-                className={classes.sortArrow}
-                onClick={() => updateSort(header, "asc")}
-              >
-                {" "}
-                &#8593;{" "}
+              <span className={classes.sortArrow} onClick={() => sort(header, "asc")} >
+                &#8593;
               </span>
-            ) : (
-              ""
-            )}
+            ) : ( "" )}
           </h4>
         ))}
       </section>
 
-      {sortedCustomers.map((user, index) => {
+      {sorted.map((user, index) => {
         let colored = index % 2 == 1 ? true : false;
         return (
           <CustomerTableRow key={user.fullName} user={user} colored={colored} />

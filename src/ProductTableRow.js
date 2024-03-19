@@ -33,11 +33,11 @@ function ProductTableRow({ content, colored }) {
       onMouseOut={setHoveredFalse}
     >
       <p className={cellBackground}>{content.title}</p>
-      <p className={cellBackground}>Price: ${content.price.toFixed(2)}</p>
-      <p className={cellBackground}>Category: {content.category}</p>
-      <p className={cellBackground}>Rating: {content.rating.rate}</p>
-      <p className={cellBackground}>Inventory: {content.inventory}</p>
-      <p className={cellBackground}>Revenue: ????? </p>
+      <div className={cellBackground}><p className={classes.alignRight}>${content.price.toFixed(2)}</p></div>
+      <p className={cellBackground}>{content.category}</p>
+      <div className={cellBackground}><p className={classes.alignRight}>{content.rating.rate}</p></div>
+      <div className={cellBackground}><p className={classes.alignRight}>{content.inventory}</p></div>
+      <div className={cellBackground}><p className={classes.alignRight}>?????</p></div>
       <div className={cellBackground}>
         <button className={classes.learnMoreButton} onClick={setPopupTrue}>
           Learn More
