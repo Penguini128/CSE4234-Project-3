@@ -1,19 +1,26 @@
 const colors = {
-  skyBlue: "#13B6F6",
-  coral: "#FF4782",
-  smokeyWhite: "#F5F5F5",
-  white: "#FFFFFF",
-  mutePurple: "#523D4F",
-  lightGray: "#E2E2E2",
-  midGray: "#B0B0B0",
-  babyPink: "#FEECF2",
-};
+    title: '#274690',
+    smokeyWhite: '#F5F5F5',
+    white: '#FFFFFF',
+    mutePurple: "#523D4F",
+    lightGray: "#E2E2E2",
+    midGray: "#B0B0B0",
+    babyPink: "#FEECF2"
+}
 
 const tableCellPadding = "10px 15px";
 const cardBorderRadius = "30px";
 const cardFlipTime = "0.5s";
 
 const style = {
+ funTitle: {
+        color: colors.title,
+        display: 'inline-block',
+        transition: 'transform 0.05s',
+        '&:hover': {
+            transform: 'translateY(-3px)'
+        }
+  },
   app: {
     margin: "0rem",
     fontFamily: '"Segoe UI", Roboto, Helvetica, Arial, serif',
@@ -64,7 +71,6 @@ const style = {
       transition: "transform 0s",
       transform: "translateY(0)",
     },
-  },
   navHeaderAnchor: {
     display: "inline-block",
     borderColor: "#fff",

@@ -5,7 +5,8 @@ import Product from "./Product";
 
 const useStyles = createUseStyles(style);
 
-function ProductTableRow({ content, colored }) {
+function ProductTableRow({ content, colored, revenue }) {
+
   const [hovered, setHovered] = useState(false);
   const [popupVisible, setPopupVisiblity] = useState(false);
 
@@ -33,11 +34,12 @@ function ProductTableRow({ content, colored }) {
       onMouseOut={setHoveredFalse}
     >
       <p className={cellBackground}>{content.title}</p>
+
       <div className={cellBackground}><p className={classes.alignRight}>${content.price.toFixed(2)}</p></div>
       <p className={cellBackground}>{content.category}</p>
       <div className={cellBackground}><p className={classes.alignRight}>{content.rating.rate}</p></div>
       <div className={cellBackground}><p className={classes.alignRight}>{content.inventory}</p></div>
-      <div className={cellBackground}><p className={classes.alignRight}>?????</p></div>
+      <div className={cellBackground}><p className={classes.alignRight}>${(revenue * content.price / 2).toFixed(2)}</p></div>
       <div className={cellBackground}>
         <button className={classes.learnMoreButton} onClick={setPopupTrue}>
           Learn More
