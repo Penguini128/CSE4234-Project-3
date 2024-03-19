@@ -9,7 +9,7 @@ const colors = {
     babyPink: "#FEECF2"
 }
 
-const tableCellPadding = "10px"
+const tableCellPadding = "10px 15px"
 const cardBorderRadius = '30px'
 const cardFlipTime = '0.5s'
 
@@ -100,7 +100,13 @@ const style = {
         borderRadius: "12px",
         overflow: "hidden",
     },
+    alignRight: {
+        float: 'right',
+        margin: 0
+    },
     tableCellColored: {
+        width: 'auto',
+        height: 'auto',
         margin: "0px 1px",
         padding: tableCellPadding,
         backgroundColor: colors.lightGray
