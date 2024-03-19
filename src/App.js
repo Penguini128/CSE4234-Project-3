@@ -16,6 +16,7 @@ const App = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(null);
+  let itemMap = {};
 
   const pages = [
     { id: 0, title: "Products", content: <Products inventory={inventory} /> },
@@ -44,6 +45,16 @@ const App = () => {
                     if (product) {
                       total += product.price * purchased.quantity;
                     }
+
+                    if (product.id in itemMap) {
+                        itemMap[product.id].timesPurchased += purchased.quantity;
+                    } else {
+                        itemMap[product.id] = {
+                                timesPurchased: purchased.quantity
+                        };
+                    }
+
+
                   });
                   total = total.toFixed(2);
                   return {
@@ -58,10 +69,11 @@ const App = () => {
                 });
                 setSortedCustomers(sortedData);
                 setInventory(tempInventory);
+
                 setCurrentPage({
                   id: 0,
                   title: "Products",
-                  content: <Products inventory={tempInventory} />,
+                  content: <Products inventory={tempInventory} itemMap={itemMap} />,
                 });
                 setIsLoaded(true);
               },
